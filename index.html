@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link
+        href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css"
+        rel="stylesheet"
+    />
+    <link rel="stylesheet" href="theme.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main>
+        <section>
+            <div class="left">
+                <div class="top">
+                    <label for="image-input" class="btn">
+                        Choose image
+                        <input type="file" id="image-input" accept="image/*" hidden>
+                    </label>
+                    <button class="btn" id="reset-btn">Reset</button>
+                    <button class="btn" id="download-btn">Download</button>
+                    <button class="btn" id="undo-btn">Undo</button>
+                    <button class="btn" id="redo-btn">Redo</button>
+                </div>
+                <div class="bottom">
+                    <div class="placeholder">
+                        <i class="ri-image-line"></i>
+                        <p>No Image Choosen</p>
+                    </div>
+                    <canvas id="image-canvas"></canvas>
+                </div>
+            </div>
+            <div class="right">
+                <h2>Filters</h2>
+                <div class="filters"></div>
+                <h2>Presets</h2>
+                <div class="presets"></div>
+            </div>
+        </section>
+
+        <!-- Mobile-first UI: bottom navigation + contextual slider -->
+        <div class="mobile-ui">
+            <!-- Contextual slider overlay (shown when a filter is selected in mobile Edit tab) -->
+            <div class="mobile-slider-overlay" id="mobile-slider-overlay">
+                <div class="mobile-slider-content">
+                    <p class="mobile-slider-label" id="mobile-slider-label">Filter</p>
+                    <input type="range" id="mobile-slider-input">
+                    <button class="btn mobile-slider-close" id="mobile-slider-close">Close</button>
+                </div>
+            </div>
+
+            <!-- Panels for each bottom tab -->
+            <div class="mobile-panels">
+                <div class="mobile-panel" data-panel="edit">
+                    <div class="mobile-filters"></div>
+                </div>
+                <div class="mobile-panel" data-panel="presets">
+                    <div class="mobile-presets"></div>
+                </div>
+                <div class="mobile-panel" data-panel="actions">
+                    <div class="mobile-actions">
+                        <button class="btn mobile-action-btn" data-action="reset">Reset</button>
+                        <button class="btn mobile-action-btn" data-action="download">Download</button>
+                        <button class="btn mobile-action-btn" data-action="undo">Undo</button>
+                        <button class="btn mobile-action-btn" data-action="redo">Redo</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fixed bottom navigation bar -->
+            <nav class="mobile-nav">
+                <button class="btn mobile-nav-btn" data-tab="edit">Edit</button>
+                <button class="btn mobile-nav-btn" data-tab="presets">Presets</button>
+                <button class="btn mobile-nav-btn" data-tab="actions">Actions</button>
+            </nav>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

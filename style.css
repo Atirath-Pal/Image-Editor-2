@@ -1,0 +1,321 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,body{
+    width: 100%;
+}
+
+html{
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: var(--bg-primary-color);
+    color: var(--text-primary-color);
+}
+
+main{
+    width: 100%;
+}
+
+main section{
+    width: 100%;
+    padding: var(--padding-2xl);
+    display: flex;
+    gap: var(--gutter-large);
+}
+
+.btn{
+    padding: var(--padding-small) var(--padding-large);
+    border: none;
+    outline: none;
+    border-radius: var(--border-radius-medium);
+    background-color: var(--bg-active-color);
+    cursor: pointer;
+    color: var(--bg-primary-color);
+    min-height: 44px;
+    font-size: var(--font-size-medium);
+}
+
+#reset-btn{
+    background-color: var(--bg-danger-color);
+    color: var(--text-primary-color);
+}
+
+#download-btn{
+    background-color: var(--bg-success-color);
+    color: var(--text-primary-color);
+}
+
+main section .left{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--gutter-large);
+    width: 70%;
+    padding: var(--padding-large);
+}
+
+main section .right{
+    width: 30%;
+    background-color: var(--bg-secondary-color);
+    padding: var(--padding-large);
+    border-radius: var(--border-radius-large);
+    display: flex;
+    flex-direction: column;
+    gap: var(--gutter-medium);
+}
+
+main section .top{
+    display: flex;
+    align-items: center;
+    gap: var(--gutter-medium);
+    padding: var(--padding-large);
+}
+
+main section .bottom{
+    background-color: var(--bg-secondary-color);   
+    width: 100%;
+    padding: var(--padding-2xl);
+    aspect-ratio: 5/3;
+    border-radius: var(--border-radius-xl);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main section .bottom .placeholder{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0.6;
+    gap: var(--gutter-medium);
+}
+
+main section .bottom .placeholder i {
+    font-size: var(--font-size-8xl);
+}
+
+main section .bottom .placeholder p {
+    font-size: var(--font-size-2xl);
+}
+
+main section .right .filters{
+    display: flex;
+    flex-direction: column;
+    gap: var(--gutter-large);
+}
+
+main section .right .filter {
+    width: 100%;
+}
+
+main section .right .filter input {
+    width: 100%;
+    outline: none;
+    margin-top: var(--margin-small);
+    appearance: none;
+}
+
+main section .right .filter input::-webkit-slider-runnable-track {
+    background-color: var(--bg-active-color);
+    height: 3px;
+}
+
+main section .right .filter input::-webkit-slider-thumb {
+    cursor: pointer;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: brown;
+    margin-top: -8.5px;
+}
+
+canvas{
+    max-width: 90%;
+    max-height: 80vh;
+    display: none;
+}
+
+.presets{
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--gutter-small);
+}
+
+/* Desktop / shared states */
+.btn:disabled{
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btn.active{
+    background-color: var(--text-secondary-color);
+    color: var(--text-active-color);
+}
+
+.filter p{
+    font-size: var(--font-size-small);
+    color: var(--text-secondary-color);
+}
+
+/* Mobile-first UI containers (hidden on desktop by default) */
+.mobile-ui{
+    display: none;
+}
+
+.mobile-nav{
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: var(--padding-small) var(--padding-medium);
+    background-color: var(--bg-secondary-color);
+    display: flex;
+    gap: var(--gutter-small);
+    border-top: 1px solid rgba(255,255,255,0.08);
+    z-index: 30;
+}
+
+.mobile-nav-btn{
+    flex: 1;
+}
+
+.mobile-panels{
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: calc(3.5rem + env(safe-area-inset-bottom));
+    padding: var(--padding-medium);
+    background-color: rgba(17,17,17,0.96);
+    z-index: 25;
+    max-height: 40vh;
+    overflow-y: auto;
+    display: none;
+}
+
+.mobile-panel{
+    display: none;
+}
+
+.mobile-panel.active{
+    display: block;
+}
+
+.mobile-slider-overlay{
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: calc(3.5rem + env(safe-area-inset-bottom));
+    padding: var(--padding-medium);
+    background-color: var(--bg-secondary-color);
+    border-top: 1px solid rgba(255,255,255,0.1);
+    z-index: 35;
+    display: none;
+}
+
+.mobile-slider-overlay.open{
+    display: block;
+}
+
+.mobile-slider-content{
+    display: flex;
+    flex-direction: column;
+    gap: var(--gutter-small);
+}
+
+.mobile-slider-label{
+    font-size: var(--font-size-small);
+    color: var(--text-secondary-color);
+}
+
+.mobile-filters,
+.mobile-presets,
+.mobile-actions{
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--gutter-small);
+}
+
+.mobile-filter-btn{
+    flex: 1 1 45%;
+}
+
+.mobile-action-btn{
+    flex: 1 1 45%;
+}
+
+/* Responsive layout (keeps desktop the same) */
+@media (max-width: 900px) {
+    main section{
+        padding: var(--padding-large);
+        flex-direction: column;
+        gap: var(--gutter-large);
+    }
+
+    main section .left{
+        width: 100%;
+    }
+
+    /* Hide desktop editor panel on mobile; use bottom nav instead */
+    main section .right{
+        width: 100%;
+        display: none;
+    }
+
+    main section .top{
+        width: 100%;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: var(--padding-medium);
+    }
+
+    main section .bottom{
+        padding: var(--padding-large);
+        aspect-ratio: auto;
+        min-height: 40vh;
+    }
+
+    canvas{
+        max-width: 100%;
+        max-height: 60vh;
+    }
+
+    /* Reserve space for nav at bottom */
+    main{
+        padding-bottom: 6rem;
+    }
+
+    .mobile-ui{
+        display: block;
+    }
+
+    .mobile-panels{
+        display: block;
+    }
+}
+
+@media (max-width: 480px) {
+    main section{
+        padding: var(--padding-medium);
+    }
+
+    main section .top{
+        gap: var(--gutter-small);
+    }
+
+    .top .btn{
+        flex: 1 1 45%;
+        text-align: center;
+    }
+
+    main section .bottom .placeholder i{
+        font-size: 5rem;
+    }
+
+    main section .bottom .placeholder p{
+        font-size: var(--font-size-xl);
+        text-align: center;
+    }
+}
