@@ -24,6 +24,9 @@
                     <button class="btn" id="download-btn">Download</button>
                     <button class="btn" id="undo-btn">Undo</button>
                     <button class="btn" id="redo-btn">Redo</button>
+                    <button class="btn presets-toggle" id="presets-toggle">
+                        Presets
+                    </button>
                 </div>
                 <div class="bottom">
                     <div class="placeholder">
@@ -41,9 +44,9 @@
             </div>
         </section>
 
-        <!-- Mobile-first UI: bottom navigation + contextual slider -->
+        <!-- Mobile-first UI: bottom filter bar + contextual slider -->
         <div class="mobile-ui">
-            <!-- Contextual slider overlay (shown when a filter is selected in mobile Edit tab) -->
+            <!-- Contextual slider overlay (shown when a filter is selected in bottom bar) -->
             <div class="mobile-slider-overlay" id="mobile-slider-overlay">
                 <div class="mobile-slider-content">
                     <p class="mobile-slider-label" id="mobile-slider-label">Filter</p>
@@ -52,31 +55,26 @@
                 </div>
             </div>
 
-            <!-- Panels for each bottom tab -->
-            <div class="mobile-panels">
-                <div class="mobile-panel" data-panel="edit">
-                    <div class="mobile-filters"></div>
-                </div>
-                <div class="mobile-panel" data-panel="presets">
-                    <div class="mobile-presets"></div>
-                </div>
-                <div class="mobile-panel" data-panel="actions">
-                    <div class="mobile-actions">
-                        <button class="btn mobile-action-btn" data-action="reset">Reset</button>
-                        <button class="btn mobile-action-btn" data-action="download">Download</button>
-                        <button class="btn mobile-action-btn" data-action="undo">Undo</button>
-                        <button class="btn mobile-action-btn" data-action="redo">Redo</button>
-                    </div>
+            <!-- Fixed bottom swipeable filter bar -->
+            <div class="mobile-filter-bar" id="mobile-filter-bar">
+                <div class="mobile-filter-track">
+                    <!-- filter buttons injected here -->
                 </div>
             </div>
-
-            <!-- Fixed bottom navigation bar -->
-            <nav class="mobile-nav">
-                <button class="btn mobile-nav-btn" data-tab="edit">Edit</button>
-                <button class="btn mobile-nav-btn" data-tab="presets">Presets</button>
-                <button class="btn mobile-nav-btn" data-tab="actions">Actions</button>
-            </nav>
         </div>
+
+        <!-- Collapsible presets drawer (mobile-friendly, right side) -->
+        <aside class="presets-drawer" id="presets-drawer">
+            <div class="presets-drawer-header">
+                <h3>Presets</h3>
+                <button class="btn presets-drawer-close" id="presets-drawer-close">
+                    Close
+                </button>
+            </div>
+            <div class="presets-drawer-body">
+                <div class="mobile-presets"></div>
+            </div>
+        </aside>
     </main>
 
     <script src="script.js"></script>
