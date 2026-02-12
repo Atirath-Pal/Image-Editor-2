@@ -70,15 +70,15 @@ let image = null
 const filtersContainer = document.querySelector(".filters")
 
 // Mobile UI elements
-const mobileNavButtons = document.querySelectorAll(".mobile-nav-btn")
-const mobilePanels = document.querySelectorAll(".mobile-panel")
-const mobileFiltersContainer = document.querySelector(".mobile-filters")
+const mobileFilterTrack = document.querySelector(".mobile-filter-track")
 const mobilePresetsContainer = document.querySelector(".mobile-presets")
-const mobileActionsButtons = document.querySelectorAll(".mobile-action-btn")
 const mobileSliderOverlay = document.querySelector("#mobile-slider-overlay")
 const mobileSliderInput = document.querySelector("#mobile-slider-input")
 const mobileSliderLabel = document.querySelector("#mobile-slider-label")
 const mobileSliderClose = document.querySelector("#mobile-slider-close")
+const presetsToggleButton = document.querySelector("#presets-toggle")
+const presetsDrawer = document.querySelector("#presets-drawer")
+const presetsDrawerClose = document.querySelector("#presets-drawer-close")
 
 // History state for undo/redo
 let history = []
@@ -204,8 +204,8 @@ createFilters()
 
 // Create mobile filter buttons (names only; sliders appear in overlay)
 function createMobileFilters(){
-    if (!mobileFiltersContainer) return
-    mobileFiltersContainer.innerHTML = ""
+    if (!mobileFilterTrack) return
+    mobileFilterTrack.innerHTML = ""
     Object.keys(filters).forEach(name => {
         const btn = document.createElement("button")
         btn.classList.add("btn","mobile-filter-btn")
@@ -214,7 +214,7 @@ function createMobileFilters(){
         btn.addEventListener("click", () => {
             openMobileSlider(name)
         })
-        mobileFiltersContainer.appendChild(btn)
+        mobileFilterTrack.appendChild(btn)
     })
 }
 createMobileFilters()
@@ -466,7 +466,7 @@ Object.keys(presets).forEach(presetName => {
         applyPreset(presetName)
     })
 
-    // Mobile preset buttons
+    // Mobile preset buttons (in right-side drawer)
     if (mobilePresetsContainer) {
         const mobilePresetButton = document.createElement("button")
         mobilePresetButton.classList.add("btn")
@@ -497,50 +497,6 @@ if (redoButton) {
     })
 }
 
-// Mobile nav: tab switching
-if (mobileNavButtons && mobileNavButtons.length > 0) {
-    function setActiveMobileTab(tab){
-        mobileNavButtons.forEach(btn => {
-            const isActive = btn.dataset.tab === tab
-            btn.classList.toggle("active", isActive)
-        })
-        mobilePanels.forEach(panel => {
-            const isActive = panel.dataset.panel === tab
-            panel.classList.toggle("active", isActive)
-        })
-    }
-
-    mobileNavButtons.forEach(btn => {
-        btn.addEventListener("click", () => {
-            const tab = btn.dataset.tab
-            setActiveMobileTab(tab)
-            // Close contextual slider when switching sections
-            closeMobileSlider()
-        })
-    })
-
-    // Default active tab
-    setActiveMobileTab("edit")
-}
-
-// Mobile actions (proxy to existing desktop buttons / history)
-if (mobileActionsButtons && mobileActionsButtons.length > 0) {
-    mobileActionsButtons.forEach(btn => {
-        const action = btn.dataset.action
-        btn.addEventListener("click", () => {
-            if (action === "reset") {
-                resetButton.click()
-            } else if (action === "download") {
-                downloadButton.click()
-            } else if (action === "undo" && undoButton) {
-                undoButton.click()
-            } else if (action === "redo" && redoButton) {
-                redoButton.click()
-            }
-        })
-    })
-}
-
 // Mobile contextual slider for filters
 function openMobileSlider(name){
     if (!mobileSliderOverlay || !mobileSliderInput || !mobileSliderLabel) return
@@ -551,12 +507,23 @@ function openMobileSlider(name){
     mobileSliderInput.value = filter.value
     mobileSliderLabel.innerText = formatFilterLabel(name)
     mobileSliderOverlay.classList.add("open")
+    // Highlight active filter button in bar
+    if (mobileFilterTrack) {
+        mobileFilterTrack.querySelectorAll(".mobile-filter-btn").forEach(btn => {
+            btn.classList.toggle("active", btn.dataset.filter === name)
+        })
+    }
 }
 
 function closeMobileSlider(){
     if (!mobileSliderOverlay) return
     activeMobileFilter = null
     mobileSliderOverlay.classList.remove("open")
+    if (mobileFilterTrack) {
+        mobileFilterTrack.querySelectorAll(".mobile-filter-btn").forEach(btn => {
+            btn.classList.remove("active")
+        })
+    }
 }
 
 if (mobileSliderInput) {
@@ -579,6 +546,43 @@ if (mobileSliderClose) {
         closeMobileSlider()
     })
 }
+
+// Presets drawer toggle
+if (presetsToggleButton && presetsDrawer) {
+    presetsToggleButton.addEventListener("click", () => {
+        presetsDrawer.classList.toggle("open")
+    })
+}
+
+if (presetsDrawerClose && presetsDrawer) {
+    presetsDrawerClose.addEventListener("click", () => {
+        presetsDrawer.classList.remove("open")
+    })
+}
+
+// Close slider and presets drawer when tapping outside
+document.addEventListener("click", (event) => {
+    const sliderOpen = mobileSliderOverlay && mobileSliderOverlay.classList.contains("open")
+    const drawerOpen = presetsDrawer && presetsDrawer.classList.contains("open")
+
+    // Nothing to do if neither UI element is open
+    if (!sliderOpen && !drawerOpen) return
+
+    const overlayClicked = mobileSliderOverlay?.contains(event.target)
+    const barClicked = document.querySelector("#mobile-filter-bar")?.contains(event.target)
+    const drawerClicked = presetsDrawer?.contains(event.target)
+    const toggleClicked = presetsToggleButton?.contains(event.target)
+
+    // Click outside slider-related areas closes the slider overlay
+    if (sliderOpen && !overlayClicked && !barClicked && !drawerClicked && !toggleClicked) {
+        closeMobileSlider()
+    }
+
+    // Click outside drawer and its toggle closes the presets drawer
+    if (drawerOpen && !drawerClicked && !toggleClicked) {
+        presetsDrawer.classList.remove("open")
+    }
+}, true)
 
 // Initialize undo/redo button disabled state
 updateHistoryButtons()
