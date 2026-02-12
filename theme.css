@@ -1,5 +1,4 @@
 :root{
-
     /* bg colors */
     --bg-primary-color:rgb(17,17,17);
     --bg-secondary-color:rgb(34,34,34);
@@ -48,5 +47,4 @@
     --border-radius-large : 0.3rem;
     --border-radius-xl : 0.4rem;
     --border-radius-2xl : 0.5rem;
-
 }
