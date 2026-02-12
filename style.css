@@ -165,42 +165,41 @@ canvas{
     display: none;
 }
 
-.mobile-nav{
+/* Bottom swipeable filter bar */
+.mobile-filter-bar{
     position: fixed;
     left: 0;
     right: 0;
     bottom: 0;
-    padding: var(--padding-small) var(--padding-medium);
+    padding: var(--padding-small) 0;
     background-color: var(--bg-secondary-color);
-    display: flex;
-    gap: var(--gutter-small);
+    border-top: 1px solid rgba(255,255,255,0.08);
     border-top: 1px solid rgba(255,255,255,0.08);
     z-index: 30;
 }
 
-.mobile-nav-btn{
-    flex: 1;
+.mobile-filter-track{
+    display: inline-flex;
+    gap: var(--gutter-small);
+    padding: 0 var(--padding-medium);
+    overflow-x: auto;
+    white-space: nowrap;
+    width: 100%;
+    scroll-snap-type: x mandatory;
 }
 
-.mobile-panels{
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: calc(3.5rem + env(safe-area-inset-bottom));
-    padding: var(--padding-medium);
-    background-color: rgba(17,17,17,0.96);
-    z-index: 25;
-    max-height: 40vh;
-    overflow-y: auto;
-    display: none;
+.mobile-filter-track::-webkit-scrollbar{
+    height: 0;
 }
 
-.mobile-panel{
-    display: none;
+.mobile-filter-btn{
+    flex: 0 0 auto;
+    scroll-snap-align: start;
 }
 
-.mobile-panel.active{
-    display: block;
+.mobile-filter-btn.active{
+    background-color: var(--text-secondary-color);
+    color: var(--text-active-color);
 }
 
 .mobile-slider-overlay{
@@ -238,12 +237,50 @@ canvas{
     gap: var(--gutter-small);
 }
 
-.mobile-filter-btn{
-    flex: 1 1 45%;
+/* Action buttons reuse generic .btn layout */
+
+/* Presets drawer */
+.presets-toggle{
+    padding-inline: var(--padding-medium);
 }
 
-.mobile-action-btn{
-    flex: 1 1 45%;
+.presets-drawer{
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: min(280px, 75vw);
+    background-color: rgba(17,17,17,0.98);
+    border-left: 1px solid rgba(255,255,255,0.08);
+    box-shadow: -4px 0 16px rgba(0,0,0,0.6);
+    transform: translateX(100%);
+    transition: transform 0.25s ease-out;
+    z-index: 35;
+    display: flex;
+    flex-direction: column;
+    padding: var(--padding-medium);
+    gap: var(--gutter-medium);
+}
+
+.presets-drawer.open{
+    transform: translateX(0);
+}
+
+.presets-drawer-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.presets-drawer-body{
+    flex: 1;
+    overflow-y: auto;
+}
+
+.presets-drawer-body .mobile-presets{
+    display: flex;
+    flex-direction: column;
+    gap: var(--gutter-small);
 }
 
 /* Responsive layout (keeps desktop the same) */
@@ -282,16 +319,12 @@ canvas{
         max-height: 60vh;
     }
 
-    /* Reserve space for nav at bottom */
+    /* Reserve space for bottom filter bar */
     main{
         padding-bottom: 6rem;
     }
 
     .mobile-ui{
-        display: block;
-    }
-
-    .mobile-panels{
         display: block;
     }
 }
