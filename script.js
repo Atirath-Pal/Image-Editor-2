@@ -60,7 +60,6 @@ const imgInput = document.querySelector("#image-input")
 const canvasCtx = imageCanvas.getContext("2d")
 const resetButton = document.querySelector("#reset-btn")
 const downloadButton = document.querySelector("#download-btn")
-const presetsContainer = document.querySelector(".presets")
 const undoButton = document.querySelector("#undo-btn")
 const redoButton = document.querySelector("#redo-btn")
 
@@ -457,22 +456,13 @@ function applyPreset(presetName){
 }
 
 Object.keys(presets).forEach(presetName => {
-    const presetButton = document.createElement("button")
-    presetButton.classList.add("btn")
-    presetButton.innerText = presetName
-    presetsContainer.appendChild(presetButton)
-
-    presetButton.addEventListener("click" , ()=>{
-        applyPreset(presetName)
-    })
-
-    // Mobile preset buttons (in right-side drawer)
+    // Unified preset buttons inside the presets drawer (used on both desktop and mobile)
     if (mobilePresetsContainer) {
-        const mobilePresetButton = document.createElement("button")
-        mobilePresetButton.classList.add("btn")
-        mobilePresetButton.innerText = presetName
-        mobilePresetsContainer.appendChild(mobilePresetButton)
-        mobilePresetButton.addEventListener("click", () => {
+        const presetButton = document.createElement("button")
+        presetButton.classList.add("btn")
+        presetButton.innerText = presetName
+        mobilePresetsContainer.appendChild(presetButton)
+        presetButton.addEventListener("click", () => {
             applyPreset(presetName)
         })
     }
