@@ -352,3 +352,43 @@ canvas{
         text-align: center;
     }
 }
+
+/* Developer Footer */
+.developer-footer {
+    width: 100%;
+    padding: var(--padding-xl);
+    background-color: var(--bg-secondary-color);
+    text-align: center;
+    margin-top: var(--margin-2xl);
+    border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.footer-content h3 {
+    font-size: var(--font-size-large);
+    margin-bottom: var(--margin-small);
+}
+
+.footer-content p {
+    font-size: var(--font-size-small);
+    color: var(--text-tertiary-color);
+    margin-bottom: var(--margin-small);
+}
+
+.footer-links {
+    margin-top: var(--margin-medium);
+    display: flex;
+    justify-content: center;
+    gap: var(--gutter-medium);
+    flex-wrap: wrap;
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: var(--text-secondary-color);
+    font-size: var(--font-size-small);
+    transition: 0.2s ease;
+}
+
+.footer-links a:hover {
+    color: var(--bg-active-color);
+}
