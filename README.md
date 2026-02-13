@@ -1,7 +1,7 @@
 # 📸 Image Editor 2
 
-![GitHub license](https://img.shields.io/github/license/Atirath-Pal/Image-Editor-2)
-![GitHub stars](https://img.shields.io/github/stars/Atirath-Pal/Image-Editor-2)
+![GitHub license](https://img.shields.io/github/license/Atirath-Pal/Image-Editor-2?style=flat)
+![GitHub stars](https://img.shields.io/github/stars/Atirath-Pal/Image-Editor-2?style=flat)
 ![GitHub last commit](https://img.shields.io/github/last-commit/Atirath-Pal/Image-Editor-2)
 
 **Image Editor 2** is a high-performance, browser-based photo editing application. Designed with a mobile-first approach, it allows users to apply professional filters, adjust image properties, and enhance photos instantly without any server-side processing—keeping your data private and secure.
