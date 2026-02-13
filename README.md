@@ -1,6 +1,6 @@
 # 📸 Image Editor 2
 
-![GitHub license](https://img.shields.io/github/license/Atirath-Pal/Image-Editor-2?style=flat)
+![GitHub license](https://img.shields.io/github/license/Atirath-Pal/Image-Editor-2?style=flat) 
 ![GitHub stars](https://img.shields.io/github/stars/Atirath-Pal/Image-Editor-2?style=flat)
 ![GitHub last commit](https://img.shields.io/github/last-commit/Atirath-Pal/Image-Editor-2)
 
