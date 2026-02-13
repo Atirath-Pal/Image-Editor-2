@@ -3,7 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    
+    <title>Image Editor 2 | Free Online Photo Editor by Atirath Pal</title>
+    <meta name="description" content="Image Editor 2 is a powerful, browser-based tool to edit photos online. Crop, apply filters, and enhance images for free. Developed by Atirath Pal.">
+    <meta name="keywords" content="image editor, online photo editor, photo filters, image editor 2, atirath pal, web-based image editor">
+    <meta name="author" content="Atirath Pal">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Image Editor 2",
+      "url": "https://atirath-pal.github.io/Image-Editor-2/",
+      "description": "A browser-based image editor for quick and easy photo enhancements.",
+      "applicationCategory": "DesignApplication",
+      "operatingSystem": "Any"
+    }
+    </script>
+
     <link
         href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css"
         rel="stylesheet"
@@ -15,6 +32,7 @@
     <main>
         <section>
             <div class="left">
+                <h1 style="display:none;">Image Editor 2 - Online Photo Editor</h1>
                 <div class="top">
                     <label for="image-input" class="btn">Upload<input type="file" id="image-input" accept="image/*" hidden>
                     </label>
@@ -29,7 +47,7 @@
                 <div class="bottom">
                     <div class="placeholder">
                         <i class="ri-image-line"></i>
-                        <p>No Image Choosen</p>
+                        <p>No Image Chosen</p>
                     </div>
                     <canvas id="image-canvas"></canvas>
                 </div>
@@ -40,9 +58,7 @@
             </div>
         </section>
 
-        <!-- Mobile-first UI: bottom filter bar + contextual slider -->
         <div class="mobile-ui">
-            <!-- Contextual slider overlay (shown when a filter is selected in bottom bar) -->
             <div class="mobile-slider-overlay" id="mobile-slider-overlay">
                 <div class="mobile-slider-content">
                     <p class="mobile-slider-label" id="mobile-slider-label">Filter</p>
@@ -51,15 +67,12 @@
                 </div>
             </div>
 
-            <!-- Fixed bottom swipeable filter bar -->
             <div class="mobile-filter-bar" id="mobile-filter-bar">
                 <div class="mobile-filter-track">
-                    <!-- filter buttons injected here -->
-                </div>
+                    </div>
             </div>
         </div>
 
-        <!-- Collapsible presets drawer (mobile-friendly, right side) -->
         <aside class="presets-drawer" id="presets-drawer">
             <div class="presets-drawer-header">
                 <h3>Presets</h3>
