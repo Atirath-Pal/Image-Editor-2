@@ -5,6 +5,7 @@
     --bg-active-color:rgb(233,233,233);
     --bg-danger-color:rgb(197, 0, 0);
     --bg-success-color:rgb(0, 122, 0);
+    --bg-color: rgb(194, 194, 194);
 
     /* text colors */
     --text-primary-color: rgb(237,237,237);
@@ -48,3 +49,4 @@
     --border-radius-xl : 0.4rem;
     --border-radius-2xl : 0.5rem;
 }
+
